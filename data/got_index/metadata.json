@@ -1,8 +1,9 @@
 {
-  "source_pdf": "A Game of Thrones 5-Book Bundle A Song of Ice and Fire Series A Game of Thrones, A Clash of Kings, A Storm of Swords, A Feast\u2026 (George R.R. Martin) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+  "source_pdf": "/Users/bhavya/Desktop/Sem 4/AI in Business/Mid_Term/A Game of Thrones 5-Book Bundle A Song of Ice and Fire Series A Game of Thrones, A Clash of Kings, A Storm of Swords, A Feast\u2026 (George R.R. Martin) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
   "embedding_model": "nomic-embed-text",
   "chunk_size": 1200,
   "chunk_overlap": 180,
-  "chunk_count": 10089,
-  "created_at": "2026-03-11T23:50:45.123955+00:00"
+  "min_chunk_chars": 80,
+  "chunk_count": 10062,
+  "created_at": "2026-03-13T20:20:06.518622+00:00"
 }

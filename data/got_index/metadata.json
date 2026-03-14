@@ -1,9 +1,29 @@
 {
   "source_pdf": "/Users/bhavya/Desktop/Sem 4/AI in Business/Mid_Term/A Game of Thrones 5-Book Bundle A Song of Ice and Fire Series A Game of Thrones, A Clash of Kings, A Storm of Swords, A Feast\u2026 (George R.R. Martin) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
   "embedding_model": "nomic-embed-text",
-  "chunk_size": 1200,
-  "chunk_overlap": 180,
-  "min_chunk_chars": 80,
-  "chunk_count": 10062,
-  "created_at": "2026-03-13T20:20:06.518622+00:00"
+  "chunk_size": 1400,
+  "chunk_overlap": 220,
+  "min_chunk_chars": 120,
+  "chunk_count": 8116,
+  "page_filtering": true,
+  "keep_appendices": true,
+  "page_stats": {
+    "total_pages": 5037,
+    "kept_pages": 4978,
+    "skipped_pages": 59,
+    "skipped_by_reason": {
+      "about_author": 1,
+      "acknowledgments": 4,
+      "author_note": 2,
+      "chronology_note": 2,
+      "dedication": 8,
+      "map_link": 5,
+      "marketing": 7,
+      "publishing": 13,
+      "table_of_contents": 17
+    },
+    "filtering_enabled": true,
+    "keep_appendices": true
+  },
+  "created_at": "2026-03-14T05:22:44.526739+00:00"
 }

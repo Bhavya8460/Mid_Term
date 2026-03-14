@@ -31,13 +31,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--chunk-size",
         type=int,
-        default=1200,
+        default=1400,
         help="Chunk size in characters.",
     )
     parser.add_argument(
         "--chunk-overlap",
         type=int,
-        default=180,
+        default=220,
         help="Chunk overlap in characters.",
     )
     parser.add_argument(
@@ -49,8 +49,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--min-chunk-chars",
         type=int,
-        default=80,
+        default=120,
         help="Skip chunks smaller than this character count.",
+    )
+    parser.add_argument(
+        "--disable-page-filter",
+        action="store_true",
+        help="Keep all extracted PDF pages, including front/back matter.",
+    )
+    parser.add_argument(
+        "--drop-appendices",
+        action="store_true",
+        help="Exclude appendix pages as well as other non-story pages.",
     )
     return parser.parse_args()
 
@@ -71,11 +81,19 @@ def main() -> None:
         chunk_overlap=args.chunk_overlap,
         min_chunk_chars=args.min_chunk_chars,
         batch_size=args.batch_size,
+        filter_irrelevant_pages=not args.disable_page_filter,
+        keep_appendices=not args.drop_appendices,
         progress=print,
     )
 
     print("\nDone.")
     print(f"Chunks: {metadata['chunk_count']}")
+    page_stats = metadata.get("page_stats", {})
+    if page_stats:
+        print(
+            "Pages kept: "
+            f"{page_stats.get('kept_pages', 0)} / {page_stats.get('total_pages', 0)}"
+        )
     print(f"Index directory: {args.index_dir}")
 
 

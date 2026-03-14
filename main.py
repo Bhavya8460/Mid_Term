@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from rag_engine import answer_with_rag, load_index
+from rag_engine import answer_with_rag, format_source_label, load_index
 
 
 def parse_args() -> argparse.Namespace:
@@ -35,11 +35,19 @@ def main() -> None:
     args = parse_args()
     index = load_index(args.index_dir)
     embedding_model = index.metadata["embedding_model"]
+    page_stats = index.metadata.get("page_stats", {})
 
     print("Game of Thrones RAG chatbot")
     print(f"Index: {args.index_dir}")
     print(f"Embedding model: {embedding_model}")
     print(f"Chat model: {args.chat_model}")
+    if page_stats:
+        print(
+            "Pages kept: "
+            f"{page_stats.get('kept_pages', 0)} / {page_stats.get('total_pages', 0)}"
+        )
+    elif "page_stats" not in index.metadata:
+        print("Index summary: older pipeline detected, rebuild recommended.")
     print("Type 'exit' to quit.\n")
 
     history: list[dict] = []
@@ -62,7 +70,7 @@ def main() -> None:
         print(f"\nAssistant: {answer}\n")
         print("Sources:")
         for i, hit in enumerate(hits, start=1):
-            print(f"[{i}] page {hit['page']} (score={hit['score']:.3f})")
+            print(f"[{i}] {format_source_label(hit)} (score={hit['score']:.3f})")
         print()
 
 
